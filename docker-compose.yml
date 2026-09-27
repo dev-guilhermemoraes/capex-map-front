@@ -1,0 +1,24 @@
+# Sobe a aplicação completa. Requer os dois repositórios clonados lado a lado:
+#   ./capex-map-front  (este repositório)
+#   ./capex-map-api
+services:
+  api:
+    build: ../capex-map-api
+    container_name: capex-api
+    ports:
+      - "5000:5000"
+    volumes:
+      - capex-db:/app/database
+    environment:
+      - NOMINATIM_USER_AGENT=capex-map-mvp/1.0 (projeto academico)
+
+  front:
+    build: .
+    container_name: capex-front
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
+volumes:
+  capex-db:

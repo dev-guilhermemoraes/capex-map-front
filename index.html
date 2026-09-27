@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mapa de Capex Industrial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+  <main class="layout">
+    <section id="mapa" aria-label="Mapa dos projetos"></section>
+
+    <aside class="painel">
+      <header class="topo">
+        <h1>Capex industrial no Brasil</h1>
+        <p class="sub">Onde a indústria está investindo agora</p>
+        <dl class="numeros">
+          <div><dt>Projetos</dt><dd id="totProjetos">–</dd></div>
+          <div><dt>Investimento mapeado</dt><dd id="totInvest">–</dd></div>
+          <div><dt>Estados</dt><dd id="totUf">–</dd></div>
+        </dl>
+      </header>
+
+      <div class="filtros">
+        <label>Estado
+          <select id="fUf"><option value="">Todos</option></select>
+        </label>
+        <label>Status
+          <select id="fStatus">
+            <option value="">Todos</option>
+            <option>Anunciado</option><option>Licenciamento</option>
+            <option>Em obras</option><option>Em operação</option><option>Suspenso</option>
+          </select>
+        </label>
+      </div>
+
+      <ul id="lista" class="lista" aria-live="polite"></ul>
+
+      <button id="btnNovo" class="btn primario" type="button">Cadastrar projeto</button>
+    </aside>
+  </main>
+
+  <dialog id="dlg">
+    <form id="form" method="dialog">
+      <h2 id="dlgTitulo">Cadastrar projeto</h2>
+      <input type="hidden" id="pid">
+      <label class="full">Nome do projeto <input id="nome" required minlength="3" maxlength="160"></label>
+      <label>Empresa <input id="empresa" required minlength="2"></label>
+      <label>Setor <input id="setor" required minlength="2" list="setores"></label>
+      <datalist id="setores"></datalist>
+      <label>Cidade <input id="cidade" required minlength="2"></label>
+      <label>UF <input id="uf" required minlength="2" maxlength="2" pattern="[A-Za-z]{2}"></label>
+      <label>Status
+        <select id="status">
+          <option>Anunciado</option><option>Licenciamento</option>
+          <option>Em obras</option><option>Em operação</option><option>Suspenso</option>
+        </select>
+      </label>
+      <label>Investimento (R$ milhões) <input id="investimento" type="number" min="0" step="any"></label>
+      <label class="full">Fonte (URL) <input id="fonte" type="url"></label>
+      <p class="dica full">A localização é encontrada automaticamente pela cidade e UF.</p>
+      <p id="erroForm" class="erro full" role="alert"></p>
+      <div class="acoes full">
+        <button type="button" class="btn" id="btnCancelar">Cancelar</button>
+        <button type="submit" class="btn primario" id="btnSalvar">Salvar projeto</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="config.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
