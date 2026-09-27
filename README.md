@@ -50,8 +50,8 @@ Pré-requisitos: Docker e Docker Compose instalados.
 1. Clone os dois repositórios na mesma pasta:
 
    ```bash
-   git clone https://github.com/SEU_USUARIO/capex-map-front.git
-   git clone https://github.com/SEU_USUARIO/capex-map-api.git
+   git clone https://github.com/dev-guilhermemoraes/capex-map-front.git
+   git clone https://github.com/dev-guilhermemoraes/capex-map-api
    ```
 
 2. Suba tudo a partir deste repositório:
